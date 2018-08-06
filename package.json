@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "shitty bot under construction",
   "main": "app.js",
-  "token": "NDMxNDk1MzkzNTIwMzg2MDY4.Djcnxg.E-DE-dkNvDsC8ucQ4dDaAWLpa34",
+  "token": "Haha yes",
   "dependencies": {
     "dblapi.js": "^2.2.0",
     "discord.js": "^11.3.2"

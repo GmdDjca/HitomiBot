@@ -1,0 +1,219 @@
+
+    if (command === 'help') {
+        const hlang = {
+        
+        //english
+    
+        "eng": `** - hi!help** haha yes
+ **- hi!ping** look at how slow is my bot lol.
+ **- hi!support** sends an invite to my server in the DMs (to avoid other bots deleting it in the server).
+ **- hi!invite** allows you to invite me to your sexy despacito roblox server.
+ **- hi!avatar (optional @mention)** sends the avatar of the mentioned user (if there's no mentions I will send your avatar instead)
+ **- hi!feedback (text)** if you have any ideas for my bot, or you want to report something, use this command. Your feedback will be logged in my support server.
+\`(WARNING: you can get blacklisted from using this command if you abuse this command for shitposting or making innapropiate feedbacks)\`
+ **- hi!help-owner** shows my owner commands, for if you're curious.
+ **- hi!server** shows your server's info.
+ **- hi!about** shows a boring text about me and Mama.
+ **- hi!say (text)** makes me repeat what you said, then I'll delete the message.
+ **- hi!yomama** just try it.
+ **- hi!8ball** ask something to the magic ball (you can suggest more answers!!)
+ **- hi!hitomi** sends a random hitomi pic (They are supposed to be SFW, however, if you want to report a picture, send a feedback including the number of the pic)
+ **- hi!genoauth** generates an invite link for the mentioned bot
+ **- hi!stats** shows my server/member/etc count as well as my uptime
+ **- hi!template** shows a template of this command that you can use to translate plus some instructions __(exclusively in english)__
+ **- hi!coin** self explanatory
+ **- hi!emoji (emoji name)** sends the link for an emote
+ **- hi!sexuality** shows a random sexuality <:gay_sparkle_heart:449944488425553931>
+ **- hi!gender** shows a random gender <:BlobTransgenderHeart:449279341654835221>
+ **- hi!bans** shows the number of banned people in the server
+ **- hi!randuser (optional text)** chooses a random member from the server
+ **- hi!reactions** shows a list of reaction commands that you can use in the chat
+ **- hi!vote** please vote for my bot`,
+
+        //spanish
+    
+        "esp": `** - hi!help** joder, sherlock
+ **- hi!ping** mira lo lento que es mi bot.
+ **- hi!support** envia un link a mi server. Otros bots podrían borrar el mensaje así que lo mandaré vía MD
+ **- hi!help-owner** te envía los comandos que sólo Mama puede usar (sólo disponible en inglés)
+ **- hi!invite** envia un link para invitarme a tu sexy despacito server de roblox.
+ **- hi!avatar (@mención opcional)** envia el avatar del usuario mentcionado (en caso de que no menciones a nadie mandaré el tuyo)\n **- hi!feedback (texto)** si tienes alguna idea para mí, o quieres reportar algo, hazlo con este comando. Tu feedback será enviado a mi server de soporte.
+\`(CUIDADO: puedes ser baneado de este comando si lo abusas o envías feedbacks inapropiados)\`
+ **- hi!server** muestra la información del server.
+ **- hi!about** enseña un texto aburrido sobre mí y mi creadora, Mamá (sólo disponible en inglés).
+ **- hi!say (texto)** me hace repetir el texto que tú digas, luego borraré tu mensaje.
+ **- hi!yomama** sólo pruebalo.
+ **- hi!8ball** pregunta algo a la bola mágica (puedes sugerir más respuestas!!).
+ **- hi!hitomi** envia una foto aleatoria de mí.(se supone que no tienen contenido pornografico, pero en caso se pasn un poquillo, puedes reportarlas usando hi!feedback y especificando el número)
+ **- hi!genoauth** genera un link para invitar al bot mencionado
+ **- hi!stats** enseña los servidores/usuarios/etc con los que estoy, así como el tiempo que he estado activa
+ **- hi!coin** lanza una moneda
+ **- hi!emoji (nombre de un emoji)** envía el link del emoji seleccionado
+ **- hi!sexuality** muestra una sexualidad aleatoria <:gay_sparkle_heart:449944488425553931>
+ **- hi!gender** muestra un género aleatorio <:BlobTransgenderHeart:449279341654835221>
+ **- hi!bans** muestra el número de baneos del server
+ **- hi!randuser (texto opcional)** escoge a un miembro aleatorio del servidor
+ **- hi!reactions** muestra una lista de comandos de reacciones que puedes usar en el chat
+ **- hi!vote** porfi vota a mi bot`,
+
+
+        //serbian
+        
+        "srb": `** - hi!help** NE SERI ŠONE
+ **- hi!ping** ti pokaže koliko mi je spor bot.
+ **- hi!support** pošalje invite za moj server u DM-ove (da ih botovi ne izbrišu).
+ **- hi!invite** ti omoguci da me pozoveš u tvoj mega-seksi Baka Prase fan server.
+ **- hi!avatar** (opcionalan @mention)** pošalje avatar mention-ovanog korisnika (ako nema mentiona šaljem tvoj avatar).
+ **- hi!feedback** (text)** ako imaš ideje za mog bota ili samo želiš nešto da prijaviš, koristi ovu komandu. vaš tekst ce biti sacuvan u mom support serveru.
+\`(UPOZORENJE: možete biti blacklistovani ako pravite neprikladne prijave koristeci ovu komandu.)\`
+**- hi!help-owner** prikaže moje administratorske komande, ako te zanima.
+ **- hi!server** prikaže informacije tvog servera.
+ **- hi!about** prikaže dosadan tekst o meni i Mami.
+ **- hi!say (text)** me natera da ponovim šta si napisao. ova komanda takode obriše tvoju originalnu poruku.
+ **- hi!yomama** isprobaj, neceš zažaliti.
+ **- hi!8ball** pitaj nešto magicnu kuglu. (možeš i da predložiš još neke odgovore!)
+ **- hi!hitomi** pošalje ti random hitomi sliku. (trebalo bi da su SFW, ali ako želiš da prijaviš neku sliku, koristi komandu hi!feedback sa brojem te slike.)
+ **- hi!genoauth** generiše invite link za pomenutog bota.
+ **- hi!stats** prikaže broj clanova itd. u serveru kao i moj uptime.`,
+
+        //romanian
+
+        "rom": `** - hi!help** haha yes
+ **- hi!ping** uite cât de lent e bot-ul meu lol
+ **- hi!support** trimite un invite la server-ul meu in MDuri (ca sa evite al?i bo?i care ar putea sa îl ?tearga).
+ **- hi!invite** te lasa sa ma invi?i în server-ul tau sexy de ROBLOX Despacito
+ **- hi!avatar (optional @mention)** trimite imaginea de profil a utilizatorului @men?ionat (daca nu e men?ionat nimeni, trimite imaginea ta de profil)
+ **- hi!feedback (text)** daca ave?i idei pentru botul meu sau vre?i sa raporta?i ceva, utiliza?i aceasta comanda. Comentariile dvs. vor fi înregistrate pe serverul meu de asisten?a.
+\`(ATEN?IE: pute?i ob?ine lista neagra de la utilizarea acestei comenzi daca abuza?i aceasta comanda pentru a face shitposting sau a face feedback inadecvat)\`
+ **- hi!help-owner** arata comenzile owner-ului meu, daca e?ti curios.
+ **- hi!server** afi?eaza informa?iile server-ului dvs.
+ **- hi!about** arata un text plictisitor despre mine si Mama.
+ **- hi!say (text)** repeta ce ai spus, dupa aia, ?terge mesajul.
+ **- hi!yomama** doar încearcal
+ **- hi!8ball** cere ceva la mingea magica (pute?i sugera mai multe raspunsuri!)
+ **- hi!hitomi** trimite o captura aleatorie hitomi (Se presupune ca acestea sunt SFW, totu?i, daca dori?i sa raporta?i o imagine, trimite?i un feedback care include numarul picului)
+ **- hi!genoauth** genereaza un link de invita?ie pentru bot-ul men?ionat
+ **- hi!stats** arata numarul meu de servere/membri/ etc, precum ?i timpul meu de func?ionare
+ **- hi!coin** se explicã singur
+ **- hi!emoji (numele emoji-ului)** trimite linkul pentru un emoji
+ **- hi!sexuality** arata o sexualitate spontana :gay_sparkle_heart:
+ **- hi!gender** arata un gen spontan :BlobTransgenderHeart:
+ **- hi!bans** arata numarul the oameni cu accesul interzis la server
+ ** -hi!randuser (textul op?ional)** alege un membru aleatoriu de pe server
+ ** -hi!reactions** arata o lista de comenzi de reac?ie pe care le pute?i folosi în chat`,
+
+        //italian 
+
+        "ita": `** - hi!help** t
+ **- hi!ping** guarda come è lento il mio bot lol
+ **- hi!support** manda un invito per il mio server nei tuoi DM (per evitare che altri bot lo cancellino nel server).
+ **- hi!invite** ti permette di invitarmi nel tuo sexy despacito roblox server.
+ **- hi!avatar (@tag opzionale)** manda l'avatar della persona menzionata (se non c'è nessuna persona taggata manderò il tuo avatar)
+ **- hi!feedback (testo)** se hai qualche idee per il mio bot o vorresti segnalare qualcosa, usa questo commando. Il tuo messaggio feedback sarà loggato nel mio server di supporto.
+\`(ATTENZIONE: se si abusa il tale comando per mandare messaggi di shitposting oppure messaggi inappropriati, puoi essere proibito di usare il comando perché sei entrato nella blacklist.\`
+ **- hi!help-owner** rivela i miei comandi amministrativi/del proprietario, se sei curioso.
+ **- hi!server** fa vedere l'info del tuo server.
+ **- hi!about** fa vedere un msssaggio noioso su di me e Mamma.
+ **- hi!say (testo)** mi fa ripetere quello che hai detto, eliminando il tuo messaggio.
+ **- hi!yomama** provalo.
+ **- hi!8ball** chiedi qualcosa alla palla magica! (puoi suggerire delle risposte!!)
+ **- hi!hitomi** manda una foto a caso di Hitomi (Le foto sono SFW, ma se vorresti segnalare una foto, manda un messaggio feedback con il numero della foto)
+ **- hi!genoauth** genera un link d'invito per il bot menzionato
+ **- hi!stats** fa vedere il mio server/i miei membri/ecc. eppure il mio uptime
+ **- hi!coin** è ovvio
+ **- hi!emoji** manda il link per un emote
+ **- hi!sexuality** fa vedere una sessualità a caso <:gay_sparkle_heart:449944488425553931>
+ **- hi!gender** fa vedere un sesso/genere a caso <:BlobTransgenderHeart:449279341654835221>
+ **- hi!bans** fa vedere il numero delle persone bannate nel server`,
+
+        //german
+
+        "ger": `** - hi!help** hilfe und so
+ **- hi!ping** sehe nach wie langsam der bot ist
+ **- hi!support** schickt eine einladung zu meinen server in den PNs(um zu verhindern das andere bots diese löschen).
+ **- hi!invite** erlaubt es dir mich zu deinen attraktiven legouniverse server einzuladen.
+ **- hi!avatar (optional @mention)** posted den avatar des users der gementioned wurde (wenn es keine mentions gib nimmt er deinen)
+ **- hi!feedback (text)** falls du ideen für meinen bot hast oder etwas melden möchtest. deine rückmeldung wird in meinen server gespeichert.
+\`(ACHTUNG: du kannst geblacklisted werden wenn du dieses command zum krebs pfostieren oder shitposten benutzt)\`
+ **- hi!help-owner** zeigt dir die owner commands, falls du neugierig bist
+ **- hi!server** zeigt dir deine server information
+ **- hi!about** zeigt einen langweiligen text über mich und mutti
+ **- hi!say (text)** bewirkt das ich wiederhole was du sagst, danach lösche ich die narchit
+ **- hi!yomama** versuch es einfach.
+ **- hi!8ball** frage den magischen ball (du kannst mehr antworten vorschlagen!!)
+ **- hi!hitomi** pfostiert ein wirkürliches hitomi bild (sie sollen SFW seien, aber wenn du ein bild melden willst schicke feedback darüber mit der nummer des bildes)
+ **- hi!genoauth** generiert eine einladung für den bot
+ **- hi!stats** zeigt meine server/mitglieder/etc anzahl und auch meine uptime
+ **- hi!template** shows a template of this command that you can use to translate plus some instructions __(exclusively in english)__
+ **- hi!coin** selbst beschreibend
+ **- hi!emoji (emoji name)** sendet den link für ein emote
+ **- hi!sexuality** zeigt eine zufällige sexualität :gay_sparkle_heart:
+ **- hi!gender** zeigt ein zufälliges geschlecht :BlobTransgenderHeart:
+ **- hi!bans** zeigt die nummer der verbannten personen auf den server
+ **- hi!randuser (optionaler text)** sucht einen zufälligen benutzter vom server raus
+ **- hi!reactions** zeigt eine liste von reaktions commands die du benutzten kannst`,
+
+ //french
+
+ 'fre': `** - hi!help** (Ces probablement très mal traduit !)
+ **- hi!ping** Regarder comment mon bot est lent lel.
+ **- hi!support** Envoie une invitation pour mon serveur dans vos MP (Pour éviter que les bots supprime l'invitation).
+ **- hi!invite** M'autoriser a vous inviter dans votre serveur sexy despacito roblox.
+ **- hi!avatar (Optionnel mention)** Envoie l'avatar de l'utilisateur mentionner (si personne n'est mentionner envoie votre propre avatar )
+ **- hi!feedback (texte)** Si vous avez des idée pour mon bot, ou que vous voulez signalez quelque chose, utiliser cette commande. Votre retour sera enregistrer dans mon serveur.
+\`(ATTENTION:  Vous pouvez vous faire restreindre l'accès a cette commende si vous en abuser ou faite du shitpost ou des retour inappropriée.)\`
+ **- hi!help-owner** Montre mes commandes de propriétaire, si vous êtes curieux.
+ **- hi!server** Montre les info a propos de votre serveur.
+ **- hi!about** Montre un texte ennuyant sur moi et maman.
+ **- hi!say (text)** Répète ce que vous disiez, et supprime votre messages.
+ **- hi!yomama** Essaie seulement.
+ **- hi!8ball**  Demande quelque chose a la boule magique (Vous pouvez faire des suggestion pour plus de réponse !!)
+ **- hi!hitomi** Envoie une photo aléatoire de hitomi (Ils sont supposer être SFW, mais, si vous voulez signalez une photo, envoyer un retour en incluent le numéro de la photo.)
+ **- hi!genoauth** Génère un lien d'invitation pour le bot mentionner.
+ **- hi!stats** Montre le nombre de mes serveur/membre/ect compte aussi mon uptime.
+ **- hi!template** Montre un modèle de cette commende que vous pouvez utiliser pour les traduction plus quelque instructions. __(Exclusivement en anglais)__
+ **- hi!coin** S’explique lui même.
+ **- hi!emoji (Nom de l’emoji)** Envoie le lien pour un emot
+ **- hi!sexuality** Montre une sexualité au hasard :gay_sparkle_heart:
+ **- hi!gender** Montre un genre au hasard :BlobTransgenderHeart:
+ **- hi!bans** Montre le nombre de personne banni sur ce serveur
+ **- hi!randuser (optional text)** Choisis un membre aléatoire du serveur
+ **- hi!reactions** Montre une liste de réaction que vous pouvez utiliser pour le chat.
+ **- hi!vote** S'il vous plait voter pour mon bot !`
+            
+        }
+
+        if (args[0] === undefined) {
+            message.channel.send("**PLEASE SELECT A LANGUAGE:** hi!help eng/esp/rom (do hi!languages for more info)")
+        }
+    
+        else {    
+            message.channel.send(hlang[args[0]])
+            } 
+        }
+
+        if (command === 'languages') {
+            message.channel.send(`List of all avaiable languages:
+\`\`\`
+English (eng)..........[TG/LW] Tina the Cyclops#5861
+Spanish (esp)..........[TG/LW] Tina the Cyclops#5861
+Serbian (srb)............................Daesie#4285
+Romanian (rom)..............................shy#0516
+Italian (ita)..............................Iris#9923
+German (ger).............................Mummel#7010
+French (fre).............Supositware | Baguette#8211
+\`\`\`
+
+warning: they may NOT be the most recent ones`)
+        }
+
+
+
+
+        if (command === 'template') { 
+            message.channel.send("Please check your DMs!!")
+            try {
+message.author.send (`Please when sending the translation do it in a code block and please be nice to mama Thank you bb.`, { files: ["./template.txt"] })
+            }  catch (err) {
+                message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
+            }

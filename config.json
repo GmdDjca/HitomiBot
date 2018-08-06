@@ -1,0 +1,15 @@
+{ 
+  "prefix" : "hi!",
+  "token"  : "NDMxNDk1MzkzNTIwMzg2MDY4.Djcnxg.E-DE-dkNvDsC8ucQ4dDaAWLpa34",
+  "name" : "HitomiBot",
+  "version": "1.0.0",
+  "description": "shitty bot under construction",
+  "main": "bot.js",
+  "author": "[TG/LW] Tina the Cyclops#5861",
+  "dependencies": {
+    "discord.js": "^11.3.2"
+  },
+  "default_game": "(status) |hi!help/hi!ayuda | In ${client.guilds.size} servers with ${client.users.size} amazing people.",
+  "ownerID": "336492042299637771"
+    }
+    

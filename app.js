@@ -1,4 +1,12 @@
 /*
+
+azureuser@40.121.8.231
+
+cd /home/azureuser/HitomiBot
+pm2 restart app.js
+
+pm2 start app.js
+
 cd C:\Users\CLARMANSA\Desktop\HitomiBot
 node app
 
@@ -10,7 +18,10 @@ const Discord = require("discord.js");
 
 const client = new Discord.Client();
 const config = require("./config.json");
-const { token, prefix, ownerID } = require('./config.json');
+
+const token  = require('./config.json');
+const prefix  = require('./config.json');
+const ownerID  = require('./config.json');
 
 
 client.on("ready", () => {
@@ -24,34 +35,40 @@ Ohayo!!`);
 
 
 client.on("guildCreate", guild => {
-    const hibye = client.channels.get('443441620659077130')
+    const hibye = client.channels.get('443441620659077130') //the hitomi-hibye channel
+    const sowner = client.users.get(guild.ownerID)
 
-guild.owner.send("Hello, my nam HitomiBot, I'm a kinda simple (and hosted in a laptop) bot that just tries to do its best. You can use some commands like **hi!hitomi**, which will send a SFW picture of me (They're __supposed__ to not be nsfw), and I have a feedback command which lets you send any suggestion or bug you think it should get fixed. Now, the bad thing: as I said before, my creator hosts me in a laptop, so I can't stay online too much. Hope you understand. Bye!")
+guild.owner.send("Hello, my nam HitomiBot, I'm a kinda simple (and hosted in a laptop) bot that just tries to do its best. You can use some commands like **hi!hitomi**, which will send a SFW picture of me (They're __supposed__ to not be nsfw), and I have a feedback command which lets you send any suggestion or bug you think it should get fixed. I hope y'all enjoy me. Bye!")
 
     hibye.send(`<:happ:468794941162651658> Hey, new server
-\`\`\`NAME: ${guild.name}
-ID: ${guild.id}
-Members: ${guild.memberCount}\`\`\`
+\`\`\`- NAME: ${guild.name}
+- ID: ${guild.id}
+- OWNED BY: ${sowner.username}#${sowner.discriminator} (${guild.ownerID})
+- MEMBERS: ${guild.memberCount}\`\`\`
 __I'm now at a total of **${client.guilds.size}** servers with ${client.users.size} guys__`);
 
-client.user.setActivity(`hi!help | In ${client.guilds.size} servers with **${client.users.size}** amazing people.`);
+client.user.setActivity(`Animal Crossing: New Leaf | hi!help | In ${client.guilds.size} servers with **${client.users.size}** amazing people.`);
 });
 
 
 
 
 client.on("guildDelete", guild => {
-    const hibye = client.channels.get('443441620659077130')
+    const hibye = client.channels.get('443441620659077130') //the hitomi-hibye channel
+    const sowner = client.users.get(guild.ownerID)
 
-    hibye.send(`<:angr:468795068698984458>
-\`\`\`I just left ${guild.name} (${guild.id}). What a bunch of weird guys\`\`\`
-__I'm now at a total of **${client.guilds.size}** servers with **${client.users.size}** guys__`)
+    hibye.send(`<:angr:468795068698984458> I left a server, smh
+\`\`\`- NAME: ${guild.name}
+- ID: ${guild.id}
+- OWNED BY: ${sowner.username}#${sowner.discriminator} (${guild.ownerID})
+- MEMBERS: ${guild.memberCount}\`\`\`
+__I'm now at a total of **${client.guilds.size}** servers with ${client.users.size} guys__`);
 
-client.user.setActivity(`hi!help | In ${client.guilds.size} servers with ${client.users.size} amazing people.`);
+client.user.setActivity(`Mario Kart Wii | hi!help | In ${client.guilds.size} servers with ${client.users.size} amazing people.`);
 });
 
 
-client.on("message", async message => {
+client.on("message", message => {
 
     //blacklisted users
     if (message.author.id !==
@@ -87,7 +104,7 @@ client.on("message", async message => {
     //owner commands
 
     if (command === "sendfiles") {
-        if (message.author.id !== ownerID) {
+        if (message.author.id !== config.ownerID) {
             message.channel.send("No you ain't Mama");
         }
         else {
@@ -102,9 +119,10 @@ client.on("message", async message => {
         }
     }
 
+    
     if (command === "eval") {
 
-        if (message.author.id !== ownerID) {
+        if (message.author.id !== config.ownerID) {
             message.channel.send("No you ain't Mama");
         }
         else {
@@ -124,14 +142,14 @@ client.on("message", async message => {
 
 
     if (command === 'setname') {
-        if (message.author.id !== ownerID) {
+        if (message.author.id !== config.ownerID) {
             message.channel.send("No you ain't Mama");
         }
         else {
             try {
-                await client.user.setUsername(args.join(' '));
+                 client.user.setUsername(args.join(' '));
             } catch (error) {
-                return message.channel.send(`I'm am so sorry but this happened: **${error.stack}**`);
+                return message.channel.send(`<:fixbug:473450840762613770> \`\`\`${error.stack}\`\`\``);
             }
 
             return message.channel.send('Yay');
@@ -140,7 +158,7 @@ client.on("message", async message => {
 
 
     if (command === 'announce') {
-        if (message.author.id !== ownerID) {
+        if (message.author.id !== config.ownerID) {
             message.channel.send("No you ain't Mama");
         }
         else {
@@ -150,13 +168,13 @@ client.on("message", async message => {
                 announcements.send(`${args.join(' ')}`)
                 message.channel.send('Sent my announcement, Mama!');
             } catch (error) {
-                return message.channel.send(`I'm am so sorry but this happened: **${error.stack}**`);
+                return message.channel.send(`<:fixbug:473450840762613770> \`\`\`${error.stack}\`\`\``);
             }
         }
     }
 
     if (command === 'pingannounce') {
-        if (message.author.id !== ownerID) {
+        if (message.author.id !== config.ownerID) {
             message.channel.send("No you ain't Mama");
         }
         else {
@@ -166,20 +184,21 @@ client.on("message", async message => {
                 announcements.send(`@everyone ${args.join(' ')}`)
                 message.channel.send('Sent my announcement, Mama!');
             } catch (error) {
-                return message.channel.send(`I'm am so sorry but this happened: **${error.stack}**`);
+                return message.channel.send(`<:fixbug:473450840762613770> \`\`\`${error.stack}\`\`\``);
             }
         }
     }
 
+    
     if (command === 'setavatar') {
-        if (message.author.id !== ownerID) {
+        if (message.author.id !== config.ownerID) {
             message.channel.send("No you ain't Mama");
         }
         else {
             try {
-                await client.user.setAvatar(args.join(' '));
+                 client.user.setAvatar(args.join(' '));
             } catch (error) {
-                return message.channel.send(`I'm am so sorry but this happened: **${error.stack}**`);
+                return message.channel.send(`<:fixbug:473450840762613770> \`\`\`${error.stack}\`\`\``);
             }
 
             return message.channel.send('<:oneEye:470710365450141706> thanks for the avatar Mama');
@@ -188,15 +207,15 @@ client.on("message", async message => {
 
 
     if (command === 'status')
-        if (message.author.id !== ownerID) {
+        if (message.author.id !== config.ownerID) {
             message.channel.send("No you ain't Mama");
         }
         else {
             {
                 try {
-                    await client.user.setActivity(`${args.join(' ')} | hi!help | In ${client.guilds.size} servers with ${client.users.size} amazing people.`);
+                     client.user.setActivity(`${args.join(' ')} | hi!help | In ${client.guilds.size} servers with ${client.users.size} amazing people.`);
                 } catch (error) {
-                    return message.channel.send(`I'm am so sorry but this happened: **${error.stack}**`);
+                    return message.channel.send(`<:fixbug:473450840762613770> \`\`\`${error.stack}\`\`\``);
                 }
                 return message.channel.send('Ok, Mama! Changing my status!');
             }
@@ -204,24 +223,24 @@ client.on("message", async message => {
 
 
     if (command === "despacito") {
-        if (message.author.id !== ownerID) {
+        if (message.author.id !== config.ownerID) {
             message.channel.send("No you ain't Mama");
         }
         else {
-            await message.channel.send('`*gunshots mix with drums*`');
+            message.channel.send('`*gunshots mix with drums*`')
             console.log(`
 He sido apagada -<`)
-            await client.destroy();
+            client.destroy();
         }
     }
 
 
     if (command === "restart") {
-        if (message.author.id !== ownerID) {
+        if (message.author.id !== config.ownerID) {
             message.channel.send("No you ain't Mama");
         }
         else {
-            await message.channel.send('R e s t a r t i n g  l m a o');
+            message.channel.send('R e s t a r t i n g  l m a o').then
             console.log(`
 Reiniciando`)
 
@@ -232,7 +251,7 @@ Reiniciando`)
     }
 
     if (command === 'yamify') {
-        if (message.author.id !== ownerID) {
+        if (message.author.id !== config.ownerID) {
             message.channel.send("No you ain't Mama");
         }
         else {
@@ -242,14 +261,14 @@ Reiniciando`)
                 client.user.setActivity(`Yam | yam!yam | yam yam ${client.guilds.size} yam yam ${client.users.size} yam yam.`),
                 message.channel.send("Yam");
             } catch (error) {
-                return message.channel.send(`I'm am so sorry but this happened: **${error.stack}**`);
+                return message.channel.send(`<:fixbug:473450840762613770> \`\`\`${error.stack}\`\`\``);
                 
             }
         }
     }
 
     if (command === 'unyamify') {
-        if (message.author.id !== ownerID) {
+        if (message.author.id !== config.ownerID) {
             message.channel.send("No you ain't Mama");
         }
         else {
@@ -259,28 +278,28 @@ Reiniciando`)
                 client.user.setActivity(`Yes hello it is me | hi!help | In ${client.guilds.size} servers with ${client.users.size} awesome people.`);
                 message.channel.send("Back to normal");
             } catch (error) {
-                return message.channel.send(`I'm am so sorry but this happened: **${error.stack}**`);
+                return message.channel.send(`<:fixbug:473450840762613770> \`\`\`${error.stack}\`\`\``);
             }
         }
     }
 
     if (command === 'lasaga') {
-        let john = client.users.get(args[0])
-
-        if (message.author.id !== ownerID) {
+       const john = client.users.get(args[0])
+        if (message.author.id !== config.ownerID) {
             return message.channel.send("No")
         }
         else {
-            
+             
+
             if (john === undefined) {
                 message.channel.send("Whomst this user");
         }
             else {
                 try {
-                john.sendMessage('John make me lasaga');
+                john.send('John make me lasaga');
                 message.channel.send('`Succ`essfully sent the message');
                 } catch (error) {
-                    return message.channel.send(`I'm am so sorry but this happened: **${error.stack}**`);
+                    return message.channel.send(`<:fixbug:473450840762613770> \`\`\`${error.stack}\`\`\``);
                 }
             }
         }
@@ -288,29 +307,25 @@ Reiniciando`)
 
 
     if (command === 'leave') {
-        let badserver = client.guilds.get(args[0])
+        
 
-        if (message.author.id !== ownerID) {
+        if (message.author.id !== config.ownerID) {
             return message.channel.send("No you ain't mama")
         }
         else {
-            
-            if (badserver === undefined) {
-                message.channel.send("Where??!¿");
-        }
-            else {
                 try {
+                let badserver = client.guilds.get(args[0])
                 badserver.leave()
-                message.channel.send
+                message.channel.send('Oh, okay')
                 } catch (error) {
-                    return message.channel.sendMessage(`I'm am so sorry but this happened: **${error.stack}**`);
+                    return message.channel.sendMessage(`<:fixbug:473450840762613770> \`\`\`${error.stack}\`\`\``);
                 }
             }
         }
-    }
+    
     if (command === 'sinfo') {
 
-        if (message.author.id !== ownerID) {
+        if (message.author.id !== config.ownerID) {
             return message.channel.send("No you ain't Mama")
         } else {
 
@@ -332,7 +347,7 @@ message.channel.send(`**SERVER INFO:**
 
 \`MEMBERS\:\` ${server.memberCount}`);
                 } catch (error) {
-                    return message.channel.send(`I'm am so sorry but this happened: **${error.stack}**`);
+                    return message.channel.send(`<:fixbug:473450840762613770> \`\`\`${error.stack}\`\`\``);
                 }
             }
         }
@@ -342,7 +357,7 @@ message.channel.send(`**SERVER INFO:**
      //indexOf()   
     if (command === 'slist') {
 
-        if (message.author.id !== ownerID) {
+        if (message.author.id !== config.ownerID) {
             return message.channel.send("No you ain't mama")
         }
             else {
@@ -352,29 +367,13 @@ message.channel.send(`**SERVER INFO:**
 - `)}\`\`\``)
             
                 } catch (error) {
-                    return message.channel.sendMessage(`I'm am so sorry but this happened: **${error.stack}**`);
+                    return message.channel.sendMessage(`<:fixbug:473450840762613770> \`\`\`${error.stack}\`\`\``);
                 }
             }
         }
     
 
-    if (command === 'help-owner') {
-        message.channel.send(`** - hi!eval** I'll try to reproduce the code that Mama sends.
-** - hi!setname** self explanatory.
-** - hi!announce/pingannounce** announces the given text to my server. (pingannounce will add an @ everyone tag to the message)
-** - hi!setavatar** again, self explanatory.
-** - hi!status** sets my status (only the first message, the member count and all that stuff will be kept).
-** - hi!despacito** turns off the bot.
-** - hi!restart** restarts the bot.
-** - hi!sendfiles** sends the current files to Mama, it's like a backup
-** - hi!warn** warns someone if they are abusing me (wip)
-** - hi!yamify/unyamify** toggles yam mode (extremely useless btw)
-** - hi!lasaga (user ID)** for pranks.
-** - hi!leave (server ID)** leaves the chosen server
-** - hi!sinfo (number of server not id)** shows info about a server where I'm in
-** - hi!slist** shows a huge list of my servers (may become public in a future)
-(the commands above can be only run by Mama)`)
-    }
+
 
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -382,19 +381,21 @@ message.channel.send(`**SERVER INFO:**
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
-    
-    //bot related
+  
+    /*
 
     if (command === 'ping') {
-        const msg = await message.channel.send('hmMmmMmMmmM');
+        
+        const m = message.channel.send('hmMmmMmMmmM');
+        
         var pings = require( "./random/ping.json")
         var pinged = pings[Math.floor(Math.random() * pings.length)]
 
-        return msg.edit(`${pinged} \`(${msg.createdTimestamp - message.createdTimestamp}ms/${Math.round(client.ping)}ms)\``);
+        return m.edit(`${pinged} \`(${msg.createdTimestamp - message.createdTimestamp}ms/${Math.round(client.ping)}ms)\``);
     }
-
+*/
     if (command === 'support') {
-        message.channel.send('DMing you the invite :heart:').then
+        message.channel.send('Lemme slide into yo dms owo').then
         message.author.send('For any questions you can contact with Mama (aka Tina) in my support server: https://discord.gg/4E69aYC')
     }
 
@@ -407,48 +408,60 @@ https://discordapp.com/oauth2/authorize?client_id=431495393520386068&scope=bot&p
 
     
     if (command === 'about') {
-        message.channel.send(`Hi, I'm a bot coded in JavaScript with discord.js which is constantly broken and will be mostly offline cause my developer, **[TG/LW] Tina the Cyclops#5861** (which I always refer as Mama) needs to host me on her laptop. Literally Mama only learns Java at school so all her Javascript knowledge comes from me (isn't that adorable <3). Feel free to send sugesttions or ideas to my server. Thanks for using me <:HitomiHeart:434733273483051008>`)
+        message.channel.send(`Henlo, fellow human, el nama Hitomibot, and I'm a cute bot coded in \`Javascript\` using \`discord.js\` by **[TG/LW] Tina the Cyclops#5861** (whom I always will refer as Mama), which will mainly focus on fun and original commands: Mama has already seen many generic discord.js bots (no offense, please). How were I born? Well, nobody cares, but basically I got inspired from a couple of friends and like 4 months later, I started coding my bot (I was called CyclopsBot then). After a month or something, I got a rewrite, because Mama made me some change that made me unable to reply to commands.  I probably won't have very complicated commands, because literally Mama learnt Java at school, and she only learnt js by doing discord.js on me (that's extremely pathetic... as well as adorable <3) Feel free to shitpost with me, and thanks for adding me to your server <:HitomiHeart:434733273483051008>
+    
+\`Thanks to nox#2530 and shirt.js#6109 (they made Nano#9814!) for helping me in my first steps, and to Xamtheking#2099/MaxGrosshandler#6592, for helping me with the hosting, to Tehi#8822, for helping in some stuff, and to Tuvok#6969 and Tomaticornio#1928 for the support. Without all you, I'd be a shitty bot\``)
     }
 
-    if (command === 'stats') {
+    if (command === 'stats') { 
         let totalSeconds = (client.uptime / 1000);
         let hours = Math.floor(totalSeconds / 3600);
         totalSeconds %= 3600;
         let minutes = Math.floor(totalSeconds / 60);
-        let seconds = totalSeconds.toFixed([2]) % 60
+        let seconds = totalSeconds.toFixed(2) % 60
 
         let uptime = `${hours}h ${minutes}min ${seconds}sec`;
 
+        const hitomicount = require("./random/hitomi.json");
+        const gendercount = require("./random/genders.json");
+        const sexualitycount = require("./random/sexualities.json");
 
-        message.channel.send(`<:Pipimi1:455369643058790400> Users: \`${client.users.size}\`
+
+
+      message.channel.send(`<:Pipimi1:455369643058790400> Users: \`${client.users.size}\`
 <:Pipimi2:455369641523544065> Servers: \`${client.guilds.size}\`
-<:Pipimi2:455369641523544065> Channels: \`${client.channels.size}\`
-<:Pipimi3:455369644036063242> Uptime: \`${uptime}\`
-    `)}
+<:Pipimi2:455369641523544065> Uptime: \`${uptime}\`
+<:Pipimi2:455369641523544065> Pictures in hi!hitomi: \`${hitomicount.length}\`
+<:Pipimi2:455369641523544065> Genders in hi!gender: \`${gendercount.length}\`
+<:Pipimi3:455369644036063242> Sexualities in hi!sexuality: \`${sexualitycount.length}\``)}
+
+
 
     //
     //
     //
 
-    //basic stuff
 
-        if (command === 'avatar') {
-            const useravatar = message.mentions.users.first();
+    if (command === "avatar") {
+		const meme1 = client.users.get(args[0])
+		const meme2 = message.mentions.users.first();
+		if (!args[0]) {
+			message.channel.send(`${message.author.avatarURL}`)
+		} else {
+			if (meme1 === undefined) {
 
-            if (!args[0]) {
-                message.channel.send(`**${message.author.username}#${message.author.discriminator}**\'s avatar is:
-${message.author.avatarURL}`)
-            }
-            else {
-                if (useravatar === undefined) {
-                    message.channel.send('What')
-                }
-                else {
-                    message.channel.send(`**${useravatar.username}#${useravatar.discriminator}**\'s avatar is:
-${useravatar.avatarURL}`)
-                }
-            }
-        }
+				if (meme2 === undefined) {
+					message.channel.send('What')
+				} else {
+					message.channel.send(`**${meme2.username}#${meme2.discriminator}'s** avatar is:
+${meme2.avatarURL}`)
+				}
+			} else {
+				message.channel.send(`**${meme1.username}#${meme1.discriminator}'s** avatar is:
+${meme1.avatarURL}`)
+			}
+		}
+	}
 
 
         if (command === 'genoauth') {
@@ -524,9 +537,9 @@ Content: ${args.join(" ")}\`\`\` `).then
         var result = responses[Math.floor(Math.random() * responses.length)]
 
         try {
-            await message.channel.send(result).then();
+            message.channel.send(result).then();
         } catch (error) {
-            return message.channel.send(`I'm am so sorry but this happened: **${error.stack}**`);
+            return message.channel.send(`<:fixbug:473450840762613770> \`\`\`${error.stack}\`\`\``);
         }
     }
 
@@ -534,9 +547,9 @@ Content: ${args.join(" ")}\`\`\` `).then
         var pics = require( "./random/hitomi.json")
         var sendpic = pics[Math.floor(Math.random() * pics.length)]
         try {
-            await message.channel.send(sendpic).then();
+            message.channel.send(sendpic).then();
         } catch (error) {
-            return message.channel.send(`I'm am so sorry but this happened: **${error.stack}**`);
+            return message.channel.send(`<:fixbug:473450840762613770> \`\`\`${error.stack}\`\`\``);
         }
     }
 
@@ -544,9 +557,9 @@ Content: ${args.join(" ")}\`\`\` `).then
         var genders = require( "./random/genders.json")
         var sendgender = genders[Math.floor(Math.random() * genders.length)]
         try {
-            await message.channel.send(sendgender).then();
+            message.channel.send(sendgender).then();
         } catch (error) {
-            return message.channel.send(`I'm am so sorry but this happened: **${error.stack}**`);
+            return message.channel.send(`<:fixbug:473450840762613770> \`\`\`${error.stack}\`\`\``);
         }
     }
 
@@ -554,9 +567,9 @@ Content: ${args.join(" ")}\`\`\` `).then
         var sexualities = require( "./random/sexualities.json")
         var sendsex = sexualities[Math.floor(Math.random() * sexualities.length)]
         try {
-            await message.channel.send(sendsex).then();
+            message.channel.send(sendsex).then();
         } catch (error) {
-            return message.channel.send(`I'm am so sorry but this happened: **${error.stack}**`);
+            return message.channel.send(`<:fixbug:473450840762613770> \`\`\`${error.stack}\`\`\``);
         }
     }
 
@@ -564,11 +577,26 @@ Content: ${args.join(" ")}\`\`\` `).then
         var coin = ["COIN", "TAILS"]
         var coinresult = coin[Math.floor(Math.random() * coin.length)]
         try {
-            await message.channel.send(`Congtatulation, you got... Oh, **${coinresult}**`).then();
+            message.channel.send(`Congtatulation, you got... Oh, **${coinresult}**`).then();
         } catch (error) {
-            return message.channel.send(`I'm am so sorry but this happened: **${error.stack}**`);
+            return message.channel.send(`<:fixbug:473450840762613770> \`\`\`${error.stack}\`\`\``);
         }
     }
+
+    if (command === 'invitegen') {
+
+        var chars = ["a", "b", "c", "d", "f", "g", "h", "j", "k", "m", "n", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "J", "K", "M", "N", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "X", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+    
+        var char1 = chars[Math.floor(Math.random() * chars.length)]
+        var char2 = chars[Math.floor(Math.random() * chars.length)]
+        var char3 = chars[Math.floor(Math.random() * chars.length)]
+        var char4 = chars[Math.floor(Math.random() * chars.length)]
+        var char5 = chars[Math.floor(Math.random() * chars.length)]
+        var char6 = chars[Math.floor(Math.random() * chars.length)]
+    
+        message.channel.send(`https://discord.gg/${char1}${char2}${char3}${char4}${char5}${char6}`)
+    
+      }
     
     if (command === "say") {
 
@@ -598,7 +626,7 @@ Content: ${args.join(" ")}\`\`\` `).then
         }
         
         else {
-            message.channel.send(`Now **${randuser.user.username}#${randuser.user.discriminator}** is a ${nomention}`)
+            message.channel.send(`Now **${randuser.user.username}#${randuser.user.discriminator}** is ${nomention}`)
         }
     }
 
@@ -735,43 +763,7 @@ Content: ${args.join(" ")}\`\`\` `).then
           message.channel.send({ embed });
     }
 
-    if (command === 'bans') {
 
-            message.guild.fetchBans()
-
-            .then(bans => message.channel.send(`This guild has **${bans.size}** bans. Try \`hi!whowas\` and a number from 0 to ${bans.size - 1} to see who's who or use \`hi!banlist\` to see the full list!`))
-
-            .catch(console.error);
-
-    }
-
-    if (command === 'whowas') {
-    /*    
-        if (!args[0]) {
-            message.channel.send("I need! Args!");
-        } else {
-            message.guild.fetchBans()
-
-        .then(bans => message.channel.send(`${bans.array()[args[0]].name}`))
-        .catch(console.error);
-        }
-        */
-
-    message.channel.send(`<:fixbug:473450840762613770>`)
-    }
-//broken
-
-    if (command === 'banlist') {
- /*
-        message.guild.fetchBans()
-
-    .then(bans => message.channel.send(`- ${bans.array().name.join(`
-- `)}`))
-    .catch(console.error);
-    */
-    message.channel.send(`<:fixbug:473450840762613770>`)
-    }
-//broken
 
  
     //short commands
@@ -785,9 +777,30 @@ Content: ${args.join(" ")}\`\`\` `).then
     }
 
     if (command === 'vote') {
-        message.channel.send(`Here thank you
-https://listcord.com/bot/431495393520386068`)
-    }
+        
+        const embed = {
+            "title": "Here thank you",
+            "url": "https://cdn.discordapp.com/attachments/356862571124490240/477071899567063040/ifunny.png",
+            "color": 6466522,
+            "footer": {
+              "text": "Lasaga"
+            },
+            "thumbnail": {
+              "url": "https://cdn.discordapp.com/attachments/348937971858145293/477083242122575872/CyclopsCool.png"
+            },
+            "fields": [
+              {
+                "name": "Listcord",
+                "value": "No"
+              },
+              {
+                "name": "Discord Bot List",
+                "value": "[Click for free money](https://discordbots.org/bot/431495393520386068/vote)"
+              }
+            ]
+          };
+          message.channel.send({ embed });
+        }
 
     if (command === 'emojis'){
         message.channel.send(`${message.guild.emojis.array()}`)
@@ -805,46 +818,77 @@ https://listcord.com/bot/431495393520386068`)
         const hlang = {
 
     
-        "general": `\`\`\`GENERAL COMMANDS\`\`\`
+        "general": `\`\`\`╔════╣    GENERAL COMMANDS    ╠════╗\`\`\`
  **- hi!help** haha yes
- **- hi!ping** look at how slow is my bot lol.
  **- hi!support** sends an invite to my server in the DMs (to avoid other bots deleting it in the server).
  **- hi!invite** allows you to invite me to your sexy despacito roblox server.
  **- hi!vote** please vote for my bot
  **- hi!stats** shows my server/member/etc count as well as my uptime
  **- hi!about** shows a boring text about me and Mama.
- **- hi!help-owner** shows my owner commands, for if you're curious.
  **- hi!feedback (text)** if you have any ideas for my bot, or you want to report something, use this command. Your feedback will be logged in my support server.
  \`(WARNING: you can get blacklisted from using this command if you abuse this command for shitposting or making innapropiate feedbacks)\``,
 
-        "utility": `\`\`\`UTILITY COMMANDS\`\`\`
+        "utility": `\`\`\`╔════╣    UTILITY COMMANDS    ╠════╗\`\`\`
  **- hi!genoauth** generates an invite link for the mentioned bot
  **- hi!emoji (emoji name)** sends the link for an emote
  **- hi!server** shows your server's info.
  **- hi!coin** self explanatory
- **- hi!bans** shows the number of banned people in the server
- **- hi!avatar (optional @mention)** sends the avatar of the mentioned user (if there's no mentions I will send your avatar instead)`,
+ **- hi!bans** shows the number of banned people in the server \`I require ban members permission to use this\`
+ **- hi!avatar (optional @mention/user ID)** sends the avatar of the selected user or yours if there's no input
+ **- hi!invitegen** generates a discord invite link made out of random characters (probably 99% of them won't work!)`,
 
 
-        "fun": `\`\`\`FUN COMMANDS\`\`\`
+        "fun": `\`\`\`╔════╣    FUN COMMANDS    ╠════╗\`\`\`
  **- hi!sexuality** shows a random sexuality <:gay_sparkle_heart:449944488425553931>
  **- hi!gender** shows a random gender <:BlobTransgenderHeart:449279341654835221>
  **- hi!randuser (optional text)** chooses a random member from the server
  **- hi!reactions** shows a list of reaction commands that you can use in the chat
- **- hi!say (text)** makes me repeat what you said, then I'll delete the message.
+ **- hi!say (text)** replaces your command with whatever you want me to say \`I need manage messages permission to do this\`
  **- hi!yomama** just try it.
  **- hi!8ball** ask something to the magic ball (you can suggest more answers!!)
- **- hi!hitomi** sends a random hitomi pic (They are supposed to be SFW, however, if you want to report a picture, send a feedback including the number of the pic)`
-        
+ **- hi!hitomi** sends a random hitomi pic (They are supposed to be SFW, however, if you think one of the pics aren't THAT SFW, and want me to remove it, you can report it by sending a feedback including the number of the pic)`,
+ 
+
+    "triggers": `\`\`\`╔════╣    TRIGGER WORDS    ╠════╗\`\`\`
+a, h, nothing, no u, t!daily, claps, owo, it's
+
+(can be included in any sentence) fornite, fortnite, fix hitomibot, jeff
+
+**SPECIAL TRIGGERS:**
+<@!431495393520386068> - shows my prefix
+alexa play (anything) - sends a random song
+`,
+ 
+
+        "owner": `\`\`\`╔════╣  OWNER COMMANDS  ╠════╗\`\`\`
+** - hi!eval** I'll try to reproduce the code that Mama sends.
+** - hi!setname** self explanatory.
+** - hi!announce/pingannounce** announces the given text to my server. (pingannounce will add an @ everyone tag to the message)
+** - hi!setavatar** again, self explanatory.
+** - hi!status** sets my status (only the first message, the member count and all that stuff will be kept).
+** - hi!despacito** turns off the bot.
+** - hi!restart** restarts the bot.
+** - hi!sendfiles** sends the current files to Mama, it's like a backup
+** - hi!yamify/unyamify** toggles yam mode (extremely useless btw)
+** - hi!lasaga (user ID)** sends "John make me lasaga" to the selected person (I promise I won't abuse this)
+** - hi!leave (server ID)** leaves the chosen server
+** - hi!sinfo (number of server not id)** shows info about a server where I'm in 
+** - hi!slist** shows a huge list of my servers (may become public in a future)
+
+\`NOTE: the commands above can be only run by Mama\``
+ 
+
         }
 
         if (args[0] === undefined) {
-            message.channel.send("**PLEASE SELECT A CATEGORY:** hi!help general/utility/fun")
-        }
-    
-        else {    
+            message.channel.send("**PLEASE SELECT A CATEGORY:** hi!help general/utility/fun/triggers/owner \n`NOTE: it's case sensitive. That means, you have to write exactly as it's shown here: in lowercase`")
+        } else {    
+            if (hlang[args[0]] === undefined) {
+              message.channel.send("**That is not a category!** hi!help general/utility/fun/triggers/owner \n`NOTE: it's case sensitive. That means, you have to write exactly as it's shown here: in lowercase`")
+          } else {
             message.channel.send(hlang[args[0]])
-            } 
+              } 
+          }
         }
            
     
@@ -867,13 +911,19 @@ else {
 
 client.on("message", (message) => {
 
+    const args = message.content.substring(prefix.length).split(' ');
+
     if (message.author.bot) return;
 
+/*
     if (message.author.id ===
-        "140153170344017921"  //Baatu#0327 
-    ) {
-        return;
-    } 
+        "140153170344017921"  //Baatu#0001 
+    ) return;
+*/
+
+    if (message.guild.id ===
+    "369883232767836161" //Timotainment's server, got requested for that
+    ) return;
 
     else {
 
@@ -898,10 +948,12 @@ client.on("message", (message) => {
         message.channel.send(`the`)
        .then(message.channel.send(`NUTSHACK`))
     }
-    if (message.content.toLowerCase() === "gay") {
-        message.channel.send(`<:gayngerysad:473453453880852490>`);
+    if (message.content.toLowerCase() === 'nothing') {
+        message.channel.send("\*seinfeld bass line*")
     }
-
+    if (message.content.toLowerCase() === "claps") {
+        message.channel.send(`clap clap clap`);
+    }
     
 
 
@@ -911,13 +963,35 @@ client.on("message", (message) => {
         const nobugs = client.emojis.get('473450929895636993');
         message.react(nobugs);
     }
+    if (message.content.toLowerCase().includes("fortnite")) {
+        message.react('🤦');
+    }
+    if (message.content.toLowerCase().includes("fornite")) {
+        message.react('🤦');
+    }
+    if (message.content.toLowerCase().includes("jeff")) {
+        message.react('😍');
+    }
  
-     
+    
+    if (message.content.toLowerCase().startsWith("alexa play")) {
+        var music1 = require( "./random/music.json")
+        var music2 = music1[Math.floor(Math.random() * music1.length)]
+
+      if (!args[2]) {return;}
+      else {
+        message.channel.send(music2)
+      }
+  }
 
 
 
     if (message.isMentioned(client.user)) {
-        message.channel.send("Yes hello whomst ponged me my prefix is **hi!** good night thank you");
+		if(!args[1]) {
+			message.channel.send("Yes hello whomst ponged me my prefix is **hi!** good night thank you");
+		} else {
+			return;
+		}
     }
 
     
@@ -928,7 +1002,7 @@ client.on("message", (message) => {
 });
 
 
-client.login(token);
+client.login(config.token);
 
 /*
 
